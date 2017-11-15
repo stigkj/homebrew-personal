@@ -2,7 +2,7 @@ cask 'intellij-idea-newest' do
   full_name = 'IntelliJ IDEA 2017.3 EAP.app'
 
   version '2017.3-173.3622.25'
-  sha256 '552acc15a34d14193f1f43ada3a149e6b44853638e22585b6714a7a696af611e'
+  sha256 '2a11c426f16cb752c96d6638c8ee9492217e84420f57f7b2564498bfc435167c'
 
   url "https://download.jetbrains.com/idea/ideaIU-#{version.sub(%r{.*?-}, '')}.dmg"
   appcast 'https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=eap',
