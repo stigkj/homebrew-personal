@@ -1,5 +1,6 @@
 cask 'intellij-idea-newest' do
   full_name = 'IntelliJ IDEA 2017.3 EAP.app'
+  full_path = "/Applications/#{full_name}"
 
   version '2017.3-173.3622.25'
   sha256 '2a11c426f16cb752c96d6638c8ee9492217e84420f57f7b2564498bfc435167c'
@@ -13,14 +14,14 @@ cask 'intellij-idea-newest' do
   auto_updates true
 
   app full_name
-  binary 'Contents/MacOS/idea'
+  binary "#{full_path}/Contents/MacOS/idea"
 
   postflight do
-    open("#{staged_path}/#{full_name}/Contents/bin/idea.properties", 'a') do |file|
+    open("#{full_path}/Contents/bin/idea.properties", 'a') do |file|
       file.puts 'idea.case.sensitive.fs=true'
     end
 
-    system '/usr/bin/sed', '-i', '.bak', 's/-Xmx.*/-Xmx2048m/', "#{staged_path}/#{full_name}/Contents/bin/idea.vmoptions"
+    system '/usr/bin/sed', '-i', '.bak', 's/-Xmx.*/-Xmx2048m/', "#{full_path}/Contents/bin/idea.vmoptions"
   end
 
   uninstall delete: '/usr/local/bin/idea'
