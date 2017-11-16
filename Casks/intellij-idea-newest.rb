@@ -14,7 +14,6 @@ cask 'intellij-idea-newest' do
   auto_updates true
 
   app full_name
-  binary "#{full_path}/Contents/MacOS/idea"
 
   postflight do
     open("#{full_path}/Contents/bin/idea.properties", 'a') do |file|
