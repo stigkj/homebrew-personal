@@ -1,6 +1,6 @@
 cask 'intellij-idea-newest' do
-  version '2018.2.1,182.3911.13'
-  sha256 '1bb4e33054e93567dde0b381eb32a36af3854a9f9c385f9ea7864291ec2a3b77'
+  version '2018.2.3,182.4323.6'
+  sha256 'f3b2f4fb0a025ed8031ee7319276ecf1749024fc723d549c54b8a3c052f57c30'
 
   url "https://download.jetbrains.com/idea/ideaIU-#{version.after_comma}.dmg"
   appcast 'https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=eap',
@@ -10,8 +10,8 @@ cask 'intellij-idea-newest' do
 
   auto_updates true
 
-  #app "IntelliJ IDEA #{version.major_minor} EAP.app"
-  app "IntelliJ IDEA.app"
+  app "IntelliJ IDEA #{version.major_minor} EAP.app"
+  #app "IntelliJ IDEA.app"
 
   postflight do
     full_path = "#{ENV['HOME']}/Library/Preferences/IntelliJIdea#{version.major_minor}"
@@ -27,7 +27,15 @@ cask 'intellij-idea-newest' do
   uninstall delete: '/usr/local/bin/idea'
 
   uninstall_postflight do
-    ENV['PATH'].split(File::PATH_SEPARATOR).map { |path| File.join(path, 'idea') }.each { |path| File.delete(path) if File.exist?(path) && File.readlines(path).grep(%r{# see com.intellij.idea.SocketLock for the server side of this interface}).any? }
+    ENV['PATH']
+        .split(File::PATH_SEPARATOR)
+	.map { |path| File.join(path, 'idea') }
+	.each { |path| 
+	    File.delete(path) if File.exist?(path) && 
+                                 File.readlines(path)
+		                     .grep(%r{# see com.intellij.idea.SocketLock for the server side of this interface})
+		                     .any? 
+        }
   end
 
   zap delete: [
