@@ -15,6 +15,7 @@ cask 'intellij-idea-newest' do
 
   postflight do
     full_path = "#{ENV['HOME']}/Library/Preferences/IntelliJIdea#{version.major_minor}"
+    system('mkdir', '-p', full_path)
 
     open("#{full_path}/idea.properties", 'a') do |file|
       file.puts 'idea.case.sensitive.fs=true'
