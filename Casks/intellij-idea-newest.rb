@@ -1,6 +1,6 @@
 cask 'intellij-idea-newest' do
-  version '2018.3,183.4139.22'
-  sha256 '677f2be07b4402c10e38cd2d2f37a1d052963babf5e96ed3acda74f10e91d311'
+  version '2018.3,183.5153.4'
+  sha256 'fd2e8ee1dac52f957e98c98643ab7b8d7ac44710481df715a135911a56f6acdc'
 
   url "https://download.jetbrains.com/idea/ideaIU-#{version.after_comma}.dmg"
   appcast 'https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=eap',
@@ -10,8 +10,8 @@ cask 'intellij-idea-newest' do
 
   auto_updates true
 
-  app "IntelliJ IDEA #{version.major_minor} EAP.app"
-  #app "IntelliJ IDEA.app"
+  #app "IntelliJ IDEA #{version.major_minor} EAP.app"
+  app "IntelliJ IDEA.app"
 
   postflight do
     full_path = "#{ENV['HOME']}/Library/Preferences/IntelliJIdea#{version.major_minor}"
@@ -31,11 +31,11 @@ cask 'intellij-idea-newest' do
     ENV['PATH']
         .split(File::PATH_SEPARATOR)
 	.map { |path| File.join(path, 'idea') }
-	.each { |path| 
-	    File.delete(path) if File.exist?(path) && 
+	.each { |path|
+	    File.delete(path) if File.exist?(path) &&
                                  File.readlines(path)
 		                     .grep(%r{# see com.intellij.idea.SocketLock for the server side of this interface})
-		                     .any? 
+		                     .any?
         }
   end
 
