@@ -1,8 +1,8 @@
 cask 'intellij-idea-newest' do
-	version '2018.3,183.5429.1'
-  sha256 '878d199a2007031d32e2bb92aafd2ee2e093967807c46d8e6890d8bce3f8b2c7'
+  version '2019.1,191.5701.16'
+  sha256 '295eecee750c7ebe17ed85a6b411c50318a3434e2ddbfc56ba42795ea0ca8a3a'
 
-  url "https://download.jetbrains.com/idea/ideaIU-#{version.after_comma}.dmg"
+  url "https://download.jetbrains.com/idea/ideaIU-#{version.after_comma}-jbr11.dmg"
   appcast 'https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=eap',
           checkpoint: '358bf77aae8dd9e7a889df3924545d6f77f48529a59060599ad339f8a92cdc00'
   name 'IntelliJ IDEA Ultimate'
@@ -10,8 +10,8 @@ cask 'intellij-idea-newest' do
 
   auto_updates true
 
-  #app "IntelliJ IDEA #{version.major_minor} EAP.app"
-  app "IntelliJ IDEA.app"
+  app "IntelliJ IDEA #{version.major_minor} EAP.app"
+  #app "IntelliJ IDEA.app"
 
   postflight do
     full_path = "#{ENV['HOME']}/Library/Preferences/IntelliJIdea#{version.major_minor}"
