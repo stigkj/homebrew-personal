@@ -1,6 +1,6 @@
 cask 'intellij-idea-newest' do
-  version '2019.3,193.6015.22'
-  sha256 '9c200d5499bc8f1585ff76514f110f206a69af557c0ba5cdecc79621e01ad557'
+  version '2020.1,201.5985.32'
+  sha256 'a6c16dfebad8ad498267434abf1f743238b1c4b2188a8eed21b8f120b11db2f6'
 
   url "https://download.jetbrains.com/idea/ideaIU-#{version.after_comma}.dmg"
   #url "https://download.jetbrains.com/idea/ideaIU-#{version.before_comma}.dmg"
@@ -11,8 +11,8 @@ cask 'intellij-idea-newest' do
 
   auto_updates true
 
-  #app "IntelliJ IDEA #{version.major_minor} EAP.app"
-  app "IntelliJ IDEA.app"
+  app "IntelliJ IDEA #{version.major_minor} EAP.app"
+  #app "IntelliJ IDEA.app"
 
   postflight do
     full_path = "#{ENV['HOME']}/Library/Preferences/IntelliJIdea#{version.major_minor}"
@@ -22,8 +22,8 @@ cask 'intellij-idea-newest' do
       file.puts 'idea.case.sensitive.fs=true'
     end
 
-    system '/usr/bin/sed', '-i', '.bak', 's/-Xmx.*/-Xmx2048m/', "#{full_path}/idea.vmoptions"
-    system '/usr/bin/sed', '-i', '.bak', 's/-Xms.*/-Xms1024m/', "#{full_path}/idea.vmoptions"
+    system '/usr/bin/sed', '-i', '.bak', 's/-Xmx.*/-Xmx4096m/', "#{full_path}/idea.vmoptions"
+    system '/usr/bin/sed', '-i', '.bak', 's/-Xms.*/-Xms2048m/', "#{full_path}/idea.vmoptions"
   end
 
   uninstall delete: '/usr/local/bin/idea'
