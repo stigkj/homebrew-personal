@@ -1,8 +1,8 @@
 cask 'intellij-idea-newest' do
-  version '2020.1,201.5985.32'
-  sha256 'a6c16dfebad8ad498267434abf1f743238b1c4b2188a8eed21b8f120b11db2f6'
+  version '2022.1,221.5080.56'
+  sha256 '5c2c0eb55f392973aa38859291fa9f26882c202507d9a8b485d79413e90535b4'
 
-  url "https://download.jetbrains.com/idea/ideaIU-#{version.after_comma}.dmg"
+  url "https://download.jetbrains.com/idea/ideaIU-#{version.after_comma}-aarch64.dmg"
   #url "https://download.jetbrains.com/idea/ideaIU-#{version.before_comma}.dmg"
   appcast 'https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=eap',
           checkpoint: '358bf77aae8dd9e7a889df3924545d6f77f48529a59060599ad339f8a92cdc00'
