@@ -1,6 +1,6 @@
 cask 'intellij-idea-newest' do
-  version '2022.2,222.3244.4'
-  sha256 'fe6d2a2b23866af13cdd1e093234f8cf2b6301c404e101abea2781f8e6d7ac9c'
+  version '2022.3,223.7255.1'
+  sha256 '03bee5edf7a317f98607098f0b5298eff6ace147c8c712937ff6fd198e6674b2'
 
   url "https://download.jetbrains.com/idea/ideaIU-#{version.after_comma}-aarch64.dmg"
   #url "https://download.jetbrains.com/idea/ideaIU-#{version.before_comma}-aarch64.dmg"
@@ -30,14 +30,14 @@ cask 'intellij-idea-newest' do
 
   uninstall_postflight do
     ENV['PATH']
-        .split(File::PATH_SEPARATOR)
-	.map { |path| File.join(path, 'idea') }
-	.each { |path|
-	    File.delete(path) if File.exist?(path) &&
-                                 File.readlines(path)
-		                     .grep(%r{# see com.intellij.idea.SocketLock for the server side of this interface})
-		                     .any?
-        }
+      .split(File::PATH_SEPARATOR)
+      .map { |path| File.join(path, 'idea') }
+      .each { |path|
+        File.delete(path) if File.exist?(path) && 
+                             File.readlines(path)
+                               .grep(%r{# see com.intellij.idea.SocketLock for the server side of this interface})
+                               .any?
+      }
   end
 
   zap delete: [
