@@ -1,2 +1,3 @@
 # homebrew-personal
-Holds my personal Homebrew formulas
+
+Holds my personal Homebrew formulas.

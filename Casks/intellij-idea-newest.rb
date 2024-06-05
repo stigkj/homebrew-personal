@@ -1,32 +1,25 @@
 cask 'intellij-idea-newest' do
-  version '2023.1,231.8109.90'
-  sha256 'fca4c5779f73e263f77488c6884c40e6cac59c22c7bfdeb80f83c0850eede4ae'
+  version '2024.2,242.14146.16'
+  sha256 '70897070443a1abe30aafa58b726e98030185cb632d1583fa86f3e1e3daa0a23'
 
   url "https://download.jetbrains.com/idea/ideaIU-#{version.after_comma}-aarch64.dmg"
   #url "https://download.jetbrains.com/idea/ideaIU-#{version.before_comma}-aarch64.dmg"
-  appcast 'https://data.services.jetbrains.com/products/releases?code=IIU&latest=true&type=eap',
-          checkpoint: '358bf77aae8dd9e7a889df3924545d6f77f48529a59060599ad339f8a92cdc00'
   name 'IntelliJ IDEA Ultimate'
   homepage 'https://www.jetbrains.com/idea/nextversion'
 
   auto_updates true
-
-  #app "IntelliJ IDEA #{version.major_minor} EAP.app"
-  app "IntelliJ IDEA.app"
+  
+  app "IntelliJ IDEA #{version.major_minor} EAP.app"
+  #app "IntelliJ IDEA.app"
 
   postflight do
-    full_path = "#{ENV['HOME']}/Library/Preferences/IntelliJIdea#{version.major_minor}"
+    full_path = "#{ENV['HOME']}/Library/Application Support/JetBrains/IntelliJIdea#{version.major_minor}"
     system('mkdir', '-p', full_path)
 
     open("#{full_path}/idea.properties", 'a') do |file|
       file.puts 'idea.case.sensitive.fs=true'
     end
-
-    system '/usr/bin/sed', '-i', '.bak', 's/-Xmx.*/-Xmx4096m/', "#{full_path}/idea.vmoptions"
-    system '/usr/bin/sed', '-i', '.bak', 's/-Xms.*/-Xms2048m/', "#{full_path}/idea.vmoptions"
   end
-
-  uninstall delete: '/usr/local/bin/idea'
 
   uninstall_postflight do
     ENV['PATH']
@@ -39,6 +32,8 @@ cask 'intellij-idea-newest' do
                                .any?
       }
   end
+
+  uninstall delete: '/usr/local/bin/idea'
 
   zap delete: [
                 "~/Library/Caches/IntelliJIdea#{version.major_minor}",
