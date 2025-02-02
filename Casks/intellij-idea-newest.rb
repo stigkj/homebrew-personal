@@ -1,6 +1,6 @@
 cask 'intellij-idea-newest' do
-  version '2024.2,242.20224.159'
-  sha256 '2e401544561513a4ad272b5ce08748f73a1d63ac5ab9b75b65702f643209d8c5'
+  version '2025.1,251.18673.35'
+  sha256 '0a4b219b56dd7c4097ad7299e3a256fca1416a41ffcc0dd02548ecbd7f6ef306'
 
   url "https://download.jetbrains.com/idea/ideaIU-#{version.after_comma}-aarch64.dmg"
   #url "https://download.jetbrains.com/idea/ideaIU-#{version.before_comma}-aarch64.dmg"
@@ -9,8 +9,8 @@ cask 'intellij-idea-newest' do
 
   auto_updates true
   
-  #app "IntelliJ IDEA #{version.major_minor} EAP.app"
-  app "IntelliJ IDEA.app"
+  app "IntelliJ IDEA #{version.major_minor} EAP.app"
+  #app "IntelliJ IDEA.app"
 
   postflight do
     full_path = "#{ENV['HOME']}/Library/Application Support/JetBrains/IntelliJIdea#{version.major_minor}"
